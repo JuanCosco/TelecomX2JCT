@@ -1,83 +1,122 @@
-# Telecom X – Parte 2
+# 📡 TelecomX – Parte 2: Predicción de Churn con Machine Learning
 
-## Predicción de Cancelación de Clientes (Churn)
-
----
-
-## 📌 Descripción del Proyecto
-
-Este proyecto forma parte del desafío **Telecom X – Parte 2**, cuyo objetivo es desarrollar modelos de *Machine Learning* capaces de predecir la cancelación de clientes (*churn*).
-
-A partir del análisis exploratorio realizado previamente, en esta etapa se construyó un pipeline de modelado para anticipar qué clientes tienen mayor probabilidad de abandonar el servicio, permitiendo a la empresa diseñar estrategias de retención basadas en datos.
+Segunda etapa del proyecto TelecomX. A partir del análisis exploratorio previo(https://github.com/JuanCosco/TelecomXJCT)), se construyó un pipeline de Machine Learning para predecir la cancelación de clientes (*churn*), comparando dos modelos de clasificación y formulando estrategias de retención basadas en los resultados.
 
 ---
 
-## 🎯 Objetivos
+## 🎯 Objetivo
 
-* Preparar los datos para el modelado (tratamiento, codificación, normalización).
-* Realizar análisis de correlación y selección de variables.
-* Entrenar dos o más modelos de clasificación.
-* Evaluar el rendimiento de los modelos con métricas.
-* Interpretar los resultados, incluyendo la importancia de las variables.
-* Crear una conclusión estratégica señalando los principales factores que influyen en la cancelación.
+Desarrollar modelos predictivos que identifiquen clientes con alta probabilidad de cancelar el servicio, permitiendo a la empresa diseñar intervenciones de retención basadas en datos.
 
 ---
 
-## Tecnologías Utilizadas
+## 🔄 Pipeline
 
-* Pandas
-* NumPy
-* Matplotlib / Seaborn
-* Scikit-learn
-
----
-
-## Pipeline del Proyecto
-
-### 1) Preprocesamiento
-
-* Eliminación de variables irrelevantes.
-* Tratamiento de valores nulos.
-* Codificación de variables categóricas (One-Hot Encoding).
-* Normalización de variables numéricas cuando fue necesario.
-* División en conjunto de entrenamiento y prueba.
-
-### 2) Modelado
-
-Se entrenaron dos modelos de clasificación:
-
-* **Regresión Logística**
-* **Random Forest**
-
-### 3) Evaluación
-
-Se utilizaron las siguientes métricas:
-
-* Accuracy
-* Precision
-* Recall
-* F1-Score
-* ROC-AUC
-* Matriz de Confusión
-
-
-## Principales Factores de Cancelación
-
-Entre las variables más influyentes se identificaron:
-
-* Tipo de contrato (mensual vs largo plazo)
-* Antigüedad del cliente (tenure)
-* Cargos mensuales elevados
-* Servicios adicionales contratados
-* Método de pago
+```
+telecomx_clean.csv (output Parte 1)
+        ↓
+   Preprocesamiento
+   (encoding, normalización, train/test split)
+        ↓
+   Entrenamiento de modelos
+   (Logistic Regression / Random Forest)
+        ↓
+   Evaluación de métricas
+        ↓
+   Interpretación de variables
+        ↓
+   Conclusiones estratégicas
+```
 
 ---
 
-## 💡 Estrategias de Retención Propuestas
+## 📊 Resultados de los modelos
 
-* Incentivar contratos a largo plazo.
-* Ofrecer beneficios progresivos según antigüedad.
-* Revisar estructura de precios para clientes de alto riesgo.
-* Implementar campañas preventivas basadas en scoring predictivo.
-* Diseñar ofertas personalizadas según perfil de riesgo.
+| Métrica | Logistic Regression | Random Forest |
+|---------|-------------------|---------------|
+| Accuracy | 0.74 | **0.76** |
+| Precision | 0.51 | **0.53** |
+| Recall | 0.78 | **0.79** |
+| F1-Score | 0.61 | **0.63** |
+| ROC AUC | 0.840 | **0.846** |
 
+El **Random Forest ajustado** obtiene el mejor desempeño general. Ambos modelos convergen en los mismos factores clave de churn, lo que refuerza la confiabilidad de los resultados.
+
+---
+
+## 🔍 Principales factores de cancelación
+
+**Incrementan el churn:**
+- Servicio de internet por fibra óptica (Odds Ratio ≈ 1.52)
+- Pago por electronic check
+- Facturación electrónica
+- Servicios de streaming y líneas múltiples
+
+**Reducen el churn:**
+- Antigüedad del cliente *(principal predictor en ambos modelos)*
+- Contratos a 2 años → reducción significativa
+- Contratos a 1 año → reducción moderada
+- Soporte técnico contratado
+- Seguridad online
+
+---
+
+## 💡 Estrategias de retención propuestas
+
+- **Onboarding estructurado** para clientes nuevos — la antigüedad es el factor dominante
+- **Incentivos a contratos largos** — anuales y bianuales
+- **Monitoreo preventivo** del segmento fibra óptica
+- **Beneficios por migración** a métodos de pago recurrentes (débito automático)
+- **Inclusión de soporte técnico y seguridad** en paquetes base
+
+---
+
+## 🛠️ Stack tecnológico
+
+| Herramienta | Uso |
+|-------------|-----|
+| Python 3 | Lenguaje principal |
+| Pandas / NumPy | Preprocesamiento y transformación |
+| Scikit-learn | Modelado y evaluación |
+| Matplotlib / Seaborn | Visualizaciones |
+| Jupyter Notebook | Desarrollo y documentación |
+
+---
+
+## 📁 Estructura del repositorio
+
+```
+TelecomX2JCT/
+├── DataScience.ipynb       # Notebook con pipeline completo de ML
+├── telecomx_clean.csv      # Dataset limpio (output de Parte 1)
+└── README.md
+```
+
+---
+
+## 🚀 Cómo ejecutar
+
+```bash
+git clone https://github.com/JuanCosco/TelecomX2JCT.git
+cd TelecomX2JCT
+
+pip install pandas numpy matplotlib seaborn scikit-learn jupyter
+
+jupyter notebook DataScience.ipynb
+```
+
+---
+
+## 🔗 Serie del proyecto
+
+| Parte | Descripción | Repo |
+|-------|-------------|------|
+| Parte 1 | ETL + EDA | [TelecomXJCT](https://github.com/JuanCosco/TelecomXJCT) |
+| Parte 2 | ML Predictivo | ← estás aquí |
+
+---
+
+## 👤 Autor
+
+**Juan Armando Cosco Turín**  
+[GitHub](https://github.com/JuanCosco)
